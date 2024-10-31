@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
+
+:root {
+	--white: #ffffff;
+	--gray: #a0a0a0;
+	--pink: #ffb1ae;
+}
+
+body {
+	margin: 0;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: var(--gray);
+	padding: 20px;
+	min-height: calc(100vh - 243px);
+}
+
+h1, h2 {
+	font-family: 'Single Day', sans-serif;
+	font-weight: normal;
+	font-size: 32px;
+	text-align: center;
+	margin: 40px 0;
+}
+
+p {
+	font-family: 'Noto Serif', serif;
+	font-size: 20px;
+	margin: 0 0 30px 0;
+	width: 800px;
+	max-width: 100%;
+	text-align: center;
+	line-height: 30px;
+}
