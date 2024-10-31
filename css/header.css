@@ -5,6 +5,7 @@ header {
 	border-bottom: 3px solid var(--gray);
 	justify-content: space-between;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 header .logo {
@@ -34,6 +35,16 @@ header label {
 	font-size: 65px;
 }
 
+header #toggle-nav {
+	display: none;
+	height: 50px;
+	padding: 24px;
+}
+
+header #toggle-nav:hover {
+	cursor: pointer;
+}
+
 header nav {
 	font-family: 'Single Day', sans-serif;
 	font-size: 30px;
@@ -41,6 +52,8 @@ header nav {
 	grid-gap: 20px;
 	padding: 20px;
 	align-items: center;
+	max-height: calc(100vh - 171px);
+	overflow: scroll;
 }
 
 header nav a {
@@ -48,13 +61,27 @@ header nav a {
 	text-decoration: none;
 }
 
-header nav #toggle-nav {
-	display: none;
-	height: 50px;
-}
-
 @media (max-width: 780px) {
-	#toggle-nav {
+	header {
+		align-items: start;
+	}
+
+	header.grow {
+		height: fit-content;
+		max-height: calc(100vh - 3px);
+	}
+
+	header #toggle-nav {
 		display: unset;
+	}
+
+	header nav {
+		flex-direction: column;
+		width: 100%;
+		display: none;
+	}
+
+	header.grow nav {
+		display: flex;
 	}
 }
