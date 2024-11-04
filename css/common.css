@@ -21,6 +21,10 @@ main {
 	min-height: calc(100vh - 243px);
 }
 
+main a {
+	color: var(--gray);
+}
+
 h1, h2 {
 	font-family: 'Single Day', sans-serif;
 	font-weight: normal;
