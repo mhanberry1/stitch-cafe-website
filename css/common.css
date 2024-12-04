@@ -23,6 +23,7 @@ main {
 
 main a {
 	color: var(--gray);
+	font-weight: bold;
 }
 
 h1, h2 {
@@ -41,4 +42,20 @@ p {
 	max-width: 100%;
 	text-align: center;
 	line-height: 30px;
+}
+
+a.button {
+	color: white;
+	text-decoration: none;
+	font-size: 20px;
+	font-weight: normal;
+	background: var(--pink);
+	padding: 20px 40px;
+	border-radius: 5px;
+	line-height: 30px;
+}
+
+a.button:hover {
+	outline: 2px solid var(--pink);
+	font-size: 22px;
 }
