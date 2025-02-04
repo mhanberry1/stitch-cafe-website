@@ -41,6 +41,15 @@ label {
 	font-size: 22px;
 }
 
+.foot {
+	display: flex !important;
+	justify-content: center;
+}
+
 #mc_embed_shell, #mc_embed_signup {
 	max-width: 100%;
+}
+
+#mc_embed_shell {
+	margin-top: 40px;
 }
