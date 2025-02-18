@@ -1,0 +1,25 @@
+services:
+  
+  web:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./web:/usr/share/nginx/html
+    depends_on:
+      - api
+
+  api:
+    extends:
+      file: shop-stack/docker-compose.yaml
+      service: api
+      strategy: merge
+
+  db:
+    extends:
+      file: shop-stack/docker-compose.yaml
+      service: db
+      strategy: merge
+
+volumes:
+  data:
