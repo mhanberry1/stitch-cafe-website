@@ -1,0 +1,3 @@
+[submodule "shop-stack"]
+	path = shop-stack
+	url = git@github.com:mhanberry1/shop-stack.git
