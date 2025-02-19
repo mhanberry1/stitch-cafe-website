@@ -45,7 +45,24 @@ p {
 	line-height: 30px;
 }
 
-a.button {
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 540px;
+}
+
+input {
+	padding: 8 0;
+}
+
+.input-group {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+}
+
+.button {
 	color: white;
 	text-decoration: none;
 	font-size: 20px;
@@ -54,9 +71,13 @@ a.button {
 	padding: 20px 40px;
 	border-radius: 5px;
 	line-height: 30px;
+	border: none;
+	width: fit-content;
+	align-self: center;
 }
 
-a.button:hover {
+.button:hover {
 	outline: 2px solid var(--pink);
 	font-size: 22px;
+	cursor: pointer;
 }

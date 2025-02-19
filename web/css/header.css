@@ -84,6 +84,7 @@ header nav a img {
 		flex-direction: column;
 		width: 100%;
 		display: none;
+		transition: 0.2s;
 	}
 
 	header.grow nav {
