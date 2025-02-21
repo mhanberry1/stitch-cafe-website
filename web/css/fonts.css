@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Noto Serif';
+  src: url(../fonts/noto-serif.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Single Day';
+  src: url(../fonts/single-day.ttf) format('woff2');
+}
