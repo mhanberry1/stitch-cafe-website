@@ -1,16 +1,19 @@
 import { $ } from './common.js'
 import { login } from './api.js'
 
-$('form').onsubmit = e => {
+$('form').onsubmit = async e => {
 	const username = $('#username').value
 	const password = $('#password').value
 
 	e.preventDefault()
 
-	const response = login(username, password)
+	const response = await login(username, password)
+	const { message } = await response.json()
 
 	if (response.status != 200)
-		return alert('Incorrect login information')
+		return alert('Incorrect login information.')
+
+	localStorage.setItem('loggedIn', true)
 
 	location = 'admin.html'
 }

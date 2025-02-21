@@ -6,6 +6,7 @@ export const signup = (email, username, password) => fetch(
 	`${endpoint}/user/signup`,
 	{
 		method: 'POST',
+		credentials: 'include',
 		body: JSON.stringify({
 			email,
 			username,
@@ -18,6 +19,7 @@ export const verify = (username, verificationCode) => fetch(
 	`${endpoint}/user/verify`,
 	{
 		method: 'POST',
+		credentials: 'include',
 		body: JSON.stringify({
 			username,
 			verificationCode,
@@ -29,9 +31,17 @@ export const login = (username, password) => fetch(
 	`${endpoint}/user/login`,
 	{
 		method: 'POST',
+		credentials: 'include',
 		body: JSON.stringify({
 			username,
 			password,
 		}),
 	}
+)
+
+export const logout = () => fetch(
+	`${endpoint}/user/logout`,
+	{
+		credentials: 'include',
+	},
 )
