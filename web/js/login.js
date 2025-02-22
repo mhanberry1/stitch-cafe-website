@@ -13,7 +13,7 @@ $('form').onsubmit = async e => {
 	if (response.status != 200)
 		return alert('Incorrect login information.')
 
-	localStorage.setItem('loggedIn', true)
+	localStorage.setItem('isAdmin', true)
 
-	location = 'admin.html'
+	location = '/shop.html'
 }

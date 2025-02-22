@@ -1,6 +1,7 @@
 :root {
 	--white: #ffffff;
 	--gray: #a0a0a0;
+	--light-gray: #d0d0d0;
 	--pink: #ffb1ae;
 	--green: #bcc4a7;
 }
@@ -47,10 +48,16 @@ form {
 	flex-direction: column;
 	gap: 16px;
 	width: 540px;
+	max-width: 100%;
 }
 
 input {
-	padding: 8;
+	padding: 8px;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
 }
 
 .input-group {

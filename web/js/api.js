@@ -45,3 +45,37 @@ export const logout = () => fetch(
 		credentials: 'include',
 	},
 )
+
+export const listProducts = () => fetch(
+	`${endpoint}/products`,
+	{
+		credentials: 'include',
+	}
+)
+
+export const createProducts = products => fetch(
+	`${endpoint}/products`,
+	{
+		method: 'PUT',
+		credentials: 'include',
+		body: JSON.stringify({ products }),
+	}
+)
+
+export const updateProducts = products => fetch(
+	`${endpoint}/products`,
+	{
+		method: 'POST',
+		credentials: 'include',
+		body: JSON.stringify({ products }),
+	}
+)
+
+export const deleteProducts = stripeProductIds => fetch(
+	`${endpoint}/products`,
+	{
+		method: 'DELETE',
+		credentials: 'include',
+		body: JSON.stringify({ stripeProductIds }),
+	}
+)
