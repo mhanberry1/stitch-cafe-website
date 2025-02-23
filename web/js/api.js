@@ -46,8 +46,11 @@ export const logout = () => fetch(
 	},
 )
 
-export const listProducts = () => fetch(
-	`${endpoint}/products`,
+export const listProducts = stripeProductIds => fetch(
+	`${endpoint}/products` + (stripeProductIds
+		? `?stripeProductIds=${JSON.stringify(stripeProductIds)}`
+		: ''
+	),
 	{
 		credentials: 'include',
 	}
