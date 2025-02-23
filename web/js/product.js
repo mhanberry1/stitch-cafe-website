@@ -2,7 +2,8 @@ import { $, e } from './common.js'
 import { listProducts } from './api.js'
 
 const queryParams = new URLSearchParams(location.href.split('?')[1])
-const stripeProductId = queryParams.get('stripeProductId')
+const stripeProductId = JSON.parse(queryParams.get('stripeProductIds'))
+
 const {
 	images,
 	name,
@@ -25,6 +26,24 @@ $('#next-image').onclick = () => {
 	$('#current-image').href = images[imgIdx]
 }
 
+$('#minus').onclick = () => {
+	const currentVal = parseInt($('#purchase-quantity').value) || 1
+	$('#purchase-quantity').value = Math.max(1, currentVal - 1)
+}
+
+$('#plus').onclick = () => {
+	const currentVal = parseInt($('#purchase-quantity').value) || 1
+	$('#purchase-quantity').value = Math.min(quantity, currentVal + 1)
+}
+
+$('#purchase-quantity').onchange = () => {
+	const currentVal = parseInt($('#purchase-quantity').value) || 1
+	$('#purchase-quantity').value = currentVal < 1
+		? 1
+		: Math.min(quantity, currentVal)
+}
+
+$('title').textContent = `Stitch Cafe - ${name}`
 $('#current-image').href = images[imgIdx]
 $('#product-name').textContent = name
 $('#price').textContent = '$' + parseFloat(unit_amount / 100).toFixed(2)

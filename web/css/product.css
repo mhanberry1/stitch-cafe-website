@@ -38,6 +38,10 @@ main {
 	width: 480px;
 }
 
+.info .row {
+	gap: 20px;
+}
+
 .quantity-container {
 	display: flex;
 	gap: 20px;

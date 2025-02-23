@@ -1,3 +1,7 @@
+main {
+	justify-content: unset;
+}
+
 #add-new-product {
 	display: none;
 }
@@ -28,6 +32,7 @@
 
 #product-list a {
 	text-decoration: none;
+	font-weight: unset;
 }
 
 .admin-view #add-new-product {
