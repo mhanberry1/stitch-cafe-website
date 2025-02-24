@@ -26,6 +26,24 @@ main {
 	gap: 20px;
 }
 
+#added-to-cart {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	color: var(--confirm-green);
+	height: 0px;
+	overflow: hidden;
+	transition: 0.2s height ease;
+}
+
+#added-to-cart.show {
+	height: 23px;
+}
+
+#added-to-cart img {
+	height: 20px;
+}
+
 .info * {
 	margin: 0;
 }
