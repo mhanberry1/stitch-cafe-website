@@ -1,17 +1,17 @@
-import { $, e } from './common.js'
-import { listProducts } from './api.js'
+import { $, $$, e } from './common.js'
+import { listProducts, checkout } from './api.js'
 import cart from './cart.js'
 
 const items = cart.getItems()
 const { products } = await (await listProducts(Object.keys(items))).json()
 
 const minus = (container, stripeProductId) => {
-	console.log(container)
 	const currentVal =
 		parseInt($('#purchase-quantity', container).value) || 1
 	$('#purchase-quantity', container).value =
 		Math.max(1, currentVal - 1)
 	cart.addItem(stripeProductId, $('#purchase-quantity', container).value)
+	calculateSubtotal()
 }
 
 const plus = (container, stripeProductId, maxQuantity) => {
@@ -20,6 +20,7 @@ const plus = (container, stripeProductId, maxQuantity) => {
 	$('#purchase-quantity', container).value =
 		Math.min(maxQuantity, currentVal + 1)
 	cart.addItem(stripeProductId, $('#purchase-quantity', container).value)
+	calculateSubtotal()
 }
 
 const changeQuantity = (target, stripeProductId, maxQuantity) => {
@@ -28,13 +29,15 @@ const changeQuantity = (target, stripeProductId, maxQuantity) => {
 		? 1
 		: Math.min(maxQuantity, currentVal)
 	cart.addItem(stripeProductId, target.value)
+	calculateSubtotal()
 }
 
 const removeItem = (container, stripeProductId) => {
 	container.remove()
 	cart.removeItem(stripeProductId)
+	calculateSubtotal()
 
-	if (cart.getItems().length > 0) return
+	if (Object.keys(cart.getItems()).length > 0) return
 
 	$('#cart-items').textContent = 'There are no items in your cart!'
 }
@@ -48,7 +51,7 @@ const renderItem = (
 	price
 ) => {
 	$('#cart-items').append(
-		e('div', { class: 'item' }, [
+		e('div', { class: 'item', stripeProductId }, [
 			e('a',
 				{
 					href: `/product.html?stripeProductIds=["${stripeProductId}"]`
@@ -109,6 +112,42 @@ const renderItem = (
 	)
 }
 
+const calculateSubtotal = () => {
+	const cartItems = Object.entries(cart.getItems())
+	const subtotal = cartItems.map(([
+		stripeProductId,
+		quantity,
+	]) => {
+		const price = products
+			.find( p => p.id == stripeProductId)
+			.default_price.unit_amount / 100
+
+		return price * quantity
+	})
+	.reduce((x, y) => x + y, 0)
+
+	$('#subtotal').textContent = '$' + subtotal.toFixed(2)
+}
+
+$('#checkout').onclick = async () => {
+	const cartItems = cart.getItems()
+	const stripeLineItems = products
+		.map(product => cartItems[product.id] && ({
+			price: product.default_price.id,
+			quantity: cartItems[product.id],
+		}))
+		.filter(l => l)
+	const response = await checkout(stripeLineItems)
+	const { checkoutUrl } = await response.json()
+
+	if (response.status != 200) {
+		alert('Something went wrong. Please try again.')
+		return
+	}
+
+	location.href = checkoutUrl
+}
+
 products.forEach(({
 	stripeProductId,
 	name,
@@ -130,6 +169,8 @@ products.forEach(({
 		price
 	)
 })
+
+calculateSubtotal()
 
 if (Object.keys(items).length == 0) {
 	$('#cart-items').textContent = 'There are no items in your cart!'

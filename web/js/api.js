@@ -82,3 +82,17 @@ export const deleteProducts = stripeProductIds => fetch(
 		body: JSON.stringify({ stripeProductIds }),
 	}
 )
+
+export const checkout = stripeLineItems => fetch(
+	`${endpoint}/checkout`,
+	{
+		method: 'POST',
+		body: JSON.stringify({
+			stripeArgs: {
+				success_url: `${location.origin}/success.html`,
+				line_items: stripeLineItems,
+				mode: 'payment',
+			},
+		}),
+	}
+)

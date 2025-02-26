@@ -24,9 +24,7 @@ class Cart {
 	}
 
 	removeItem(stripeProductId) {
-		console.log('here')
 		delete this.#items[stripeProductId]
-		console.log(this.#items)
 		localStorage.setItem('cart', JSON.stringify(this.#items))
 
 		if (!$('#cart-indicator')) return
