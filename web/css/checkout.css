@@ -32,6 +32,13 @@ main {
 	margin: -5px -2px
 }
 
+#checkout.disabled {
+	pointer-events: none;
+	outline: 3px solid var(--gray);
+	background: white;
+	color: var(--gray);
+}
+
 .item {
 	display: flex;
 	flex-direction: column;
