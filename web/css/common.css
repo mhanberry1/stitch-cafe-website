@@ -86,3 +86,24 @@ input {
 	font-size: 22px;
 	cursor: pointer;
 }
+
+.button.small {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50px;
+	padding: 0;
+	aspect-ratio: 1;
+	border-radius: 50%;
+}
+
+.quantity-container {
+	display: flex;
+	gap: 20px;
+}
+
+.quantity-container input {
+	text-align: center;
+	width: 163px;
+	appearance: textfield;
+}

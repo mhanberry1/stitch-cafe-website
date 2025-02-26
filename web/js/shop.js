@@ -20,7 +20,12 @@ const renderProduct = ({
 		href: `/product.html?stripeProductIds=${JSON.stringify([stripeProductId])}`
 	}, [
 		e('div', { class: 'product' }, [
-			e('img', { href: images[0] }),
+			e('img', {
+				src: images[0],
+				onerror: e => {
+					e.target.src = '/img/placeholder.png'
+				}
+			}),
 			e('h2', {}, [ name ]),
 			e('div', { class: 'row' }, [
 				e('span', { class: 'price' }, [

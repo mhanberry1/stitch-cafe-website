@@ -15,6 +15,10 @@ const {
 
 let imgIdx = 0
 
+$('#current-image').onerror = e => {
+	e.target.src = '/img/placeholder.png'
+}
+
 $('#prev-image').onclick = () => {
 	imgIdx = imgIdx == 0
 		? images.length - 1
@@ -58,9 +62,15 @@ if (cart.getItems()[stripeProductId]) {
 }
 
 $('title').textContent = `Stitch Cafe - ${name}`
-$('#current-image').href = images[imgIdx]
+$('#current-image').src = images[imgIdx]
 $('#product-name').textContent = name
 $('#price').textContent = '$' + parseFloat(unit_amount / 100).toFixed(2)
 $('#remaining-quantity').textContent = `(${quantity} left)`
 $('#description').textContent = description
 $('#purchase-quantity').value = cart.getItems()[stripeProductId] || 1
+
+if (quantity == 0) {
+	$('.quantity-container').remove()
+	$('#add-to-cart').classList.add('out-of-stock')
+	$('#add-to-cart').textContent = 'Out of stock'
+}

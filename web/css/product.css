@@ -60,25 +60,11 @@ main {
 	gap: 20px;
 }
 
-.quantity-container {
-	display: flex;
-	gap: 20px;
-}
-
-.quantity-container input {
-	text-align: center;
-	width: 163px;
-	appearance: textfield;
-}
-
-.small.button {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 50px;
-	padding: 0;
-	aspect-ratio: 1;
-	border-radius: 50%;
+.button.out-of-stock {
+	pointer-events: none;
+	background: white;
+	outline: 3px solid var(--gray);
+	color: var(--gray);
 }
 
 @media (max-width: 1150px) {
