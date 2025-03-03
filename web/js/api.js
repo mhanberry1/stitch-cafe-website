@@ -96,3 +96,20 @@ export const checkout = stripeLineItems => fetch(
 		}),
 	}
 )
+
+export const uploadFiles = files => {
+	const formData = new FormData()
+
+	Array.from(files).forEach(
+		file => formData.append('files', file)
+	)
+
+	return fetch(
+		`${endpoint}/upload`,
+		{
+			method: 'POST',
+			credentials: 'include',
+			body: formData,
+		}
+	)
+}

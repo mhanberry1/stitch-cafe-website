@@ -23,12 +23,12 @@ $('#prev-image').onclick = () => {
 	imgIdx = imgIdx == 0
 		? images.length - 1
 		: imgIdx - 1
-	$('#current-image').href = images[imgIdx]
+	$('#current-image').src = images[imgIdx]
 }
 
 $('#next-image').onclick = () => {
 	imgIdx = (imgIdx + 1) % images.length
-	$('#current-image').href = images[imgIdx]
+	$('#current-image').src = images[imgIdx]
 }
 
 $('#minus').onclick = () => {

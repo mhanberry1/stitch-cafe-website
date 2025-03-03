@@ -4,6 +4,7 @@ import {
 	createProducts,
 	updateProducts,
 	deleteProducts,
+	uploadFiles,
 } from './api.js'
 
 const { products } = await (await listProducts()).json()
@@ -50,14 +51,20 @@ $('#new-product-form').onsubmit = async e => {
 	const price = $('#price').value
 	const quantity = $('#quantity').value
 	const description = $('#description').value
+	const files = $('#images').files
 
 	e.preventDefault()
 
+	// Upload images
+	const { uploadedFiles } = await (await uploadFiles(files)).json()
+
+	// Create products
 	const response = await createProducts([{
 		quantity: quantity,
 		stripeArgs: {
 			name,
 			description,
+			images: uploadedFiles,
 			default_price_data: {
 				currency: 'usd',
 				unit_amount: Math.floor(
