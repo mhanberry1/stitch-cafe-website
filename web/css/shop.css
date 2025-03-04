@@ -65,7 +65,51 @@ main {
 	margin: 0;
 }
 
-.product img {
+.product p {
+	max-height: 60px;
+	overflow: hidden;
+}
+
+.product .admin-buttons {
+	display: none;
+	gap: 20px;
+	justify-content: end;
+	position: relative;
+	margin-bottom: -70px;
+	z-index: 1;
+	padding: 10px;
+	opacity: 0;
+	transition: 0.2s opacity ease;
+}
+
+.product .admin-buttons.show {
+	display: flex;
+}
+
+.product:hover .admin-buttons {
+	opacity: 1;
+}
+
+.product .admin-button {
+	display: flex;
+	padding: 10px;
+	border-radius: 50px;
+	background: var(--pink);
+	outline: 0px solid var(--pink);
+	transition: 0.1s outline ease;
+}
+
+.product .admin-button:hover {
+	outline: 3px solid var(--pink);
+}
+
+
+.product .admin-button img {
+	height: 20px;
+	aspect-ratio: 1;
+}
+
+.product .product-image {
 	height: 200px;
 	width: 100%;
 	background: var(--light-gray);
@@ -73,10 +117,6 @@ main {
 	border-radius: 10px;
 }
 
-.product p {
-	max-height: 60px;
-	overflow: hidden;
-}
 
 .product .row {
 	justify-content: center;

@@ -7,7 +7,21 @@ import {
 	uploadFiles,
 } from './api.js'
 
+const isAdmin = localStorage.getItem('isAdmin')
 const { products } = await (await listProducts()).json()
+
+const editProduct = (e, stripeProductId) => {
+	e.stopPropagation()
+	location = '/product.html'
+		+ `?stripeProductIds=["${stripeProductId}"]`
+		+ '&edit=true'
+}
+
+const deleteProduct = async (e, stripeProductId) => {
+	e.stopPropagation()
+	await deleteProducts([stripeProductId])
+	location.reload()
+}
 
 const renderProduct = ({
 	stripeProductId,
@@ -17,30 +31,47 @@ const renderProduct = ({
 	quantity,
 	description,
 }) => $('#product-list').append(
-	e('a', {
-		href: `/product.html?stripeProductIds=${JSON.stringify([stripeProductId])}`
+	e('div', {
+		class: 'product',
+		onclick: () => location = '/product.html'
+			+ `?stripeProductIds=["${stripeProductId}"]`
 	}, [
-		e('div', { class: 'product' }, [
-			e('img', {
-				src: images[0],
-				onerror: e => {
-					e.target.src = '/img/placeholder.png'
-				}
-			}),
-			e('h2', {}, [ name ]),
-			e('div', { class: 'row' }, [
-				e('span', { class: 'price' }, [
-					'$' + parseFloat(unit_amount / 100).toFixed(2),
-				]),
-				e('span', { class: 'quantity' }, [ `(${quantity} left)` ]),
+		e('div', {
+			class: `admin-buttons ${isAdmin ? 'show' : ''}`
+		}, [
+			e ('span', { class: 'admin-button' }, [
+				e('img', {
+					src: '/img/edit.svg',
+					onclick: e => editProduct(e, stripeProductId),
+				}),
 			]),
-			e('p', {}, [
-				description.length > 50
-					? description.slice(0, 50) + '...'
-					: description
+			e ('span', { class: 'admin-button' }, [
+				e('img', {
+					src: '/img/delete.svg',
+					onclick: e => deleteProduct(e, stripeProductId),
+				}),
 			]),
 		]),
-	])
+		e('img', {
+			class: 'product-image',
+			src: images[0],
+			onerror: e => {
+				e.target.src = '/img/placeholder.png'
+			}
+		}),
+		e('h2', {}, [ name ]),
+		e('div', { class: 'row' }, [
+			e('span', { class: 'price' }, [
+				'$' + parseFloat(unit_amount / 100).toFixed(2),
+			]),
+			e('span', { class: 'quantity' }, [ `(${quantity} left)` ]),
+		]),
+		e('p', {}, [
+			description.length > 50
+				? description.slice(0, 50) + '...'
+				: description
+		]),
+	]),
 )
 
 $('#add-new-product').onclick = () =>
@@ -81,8 +112,8 @@ $('#new-product-form').onsubmit = async e => {
 	location.reload()
 }
 
-if (localStorage.getItem('isAdmin')) {
-	$('body').classList.add('admin-view')
-}
-
 products.forEach(product => renderProduct(product))
+
+if (!isAdmin) exit()
+
+$('body').classList.add('admin-view')

@@ -6,6 +6,11 @@ main {
 	padding: 80px 20px;
 }
 
+[contenteditable="true"] {
+	border: 1px solid var(--gray);
+	padding: 5px;
+}
+
 #current-image {
 	width: 600px;
 	max-width: 100%;
@@ -26,6 +31,10 @@ main {
 	gap: 20px;
 }
 
+#update-product {
+	display: none;
+}
+
 #added-to-cart {
 	display: flex;
 	align-items: center;
@@ -42,6 +51,51 @@ main {
 
 #added-to-cart img {
 	height: 20px;
+}
+
+.edit .admin-buttons {
+	display: flex;
+}
+
+.edit #add-to-cart {
+	display: none;
+}
+
+.edit #update-product {
+	display: unset;
+}
+
+.edit .quantity-container {
+	display: none;
+}
+
+.admin-buttons {
+	display: none;
+	gap: 20px;
+	justify-content: right;
+	padding: 10px;
+	position: relative;
+	margin-top: -80px;
+}
+
+.admin-button {
+	display: flex;
+	padding: 10px;
+	background: var(--pink);
+	padding: 10px;
+	border-radius: 50%;
+	outline: 0px solid var(--pink);
+	transition: 0.1s outline ease;
+}
+
+.admin-button:hover {
+	outline: 3px solid var(--pink);
+	cursor: pointer;
+}
+
+.admin-button img {
+	height: 20px;
+	aspect-ratio: 1;
 }
 
 .info * {

@@ -1,7 +1,12 @@
 import { $, e } from './common.js'
-import { listProducts } from './api.js'
+import {
+	listProducts,
+	uploadFiles,
+	updateProducts,
+} from './api.js'
 import cart from './cart.js'
 
+const isAdmin = localStorage.getItem('isAdmin')
 const queryParams = new URLSearchParams(location.href.split('?')[1])
 const stripeProductId = JSON.parse(queryParams.get('stripeProductIds'))[0]
 
@@ -17,6 +22,39 @@ let imgIdx = 0
 
 $('#current-image').onerror = e => {
 	e.target.src = '/img/placeholder.png'
+}
+
+$('#add-images').onclick = () => {
+	const input = e('input', { type: 'file', multiple: true})
+
+	input.onchange = async () => {
+		const response = await uploadFiles(input.files)
+		const { uploadedFiles } = await response.json()
+
+		images.splice(imgIdx, 0, ...uploadedFiles)
+		$('#current-image').src = images[imgIdx]
+	}
+
+	input.click()
+}
+
+$('#edit-image').onclick = () => {
+	const input = e('input', { type: 'file' })
+
+	input.onchange = async () => {
+		const response = await uploadFiles(input.files)
+		images[imgIdx] = (await response.json()).uploadedFiles[0]
+
+		$('#current-image').src = images[imgIdx]
+	}
+
+	input.click()
+}
+
+$('#delete-image').onclick = () => {
+	images.splice(imgIdx, 1)
+	imgIdx = Math.min(imgIdx, images.length - 1)
+	$('#current-image').src = images[imgIdx]
 }
 
 $('#prev-image').onclick = () => {
@@ -57,6 +95,30 @@ $('#add-to-cart').onclick = () => {
 	$('#added-to-cart').classList.add('show')
 }
 
+$('#update-product').onclick = async () => {
+	const response = await updateProducts([{
+		stripeProductId,
+		quantity: parseInt(
+			$('#remaining-quantity').textContent.replace(/[^\d]/g, '')
+		),
+		price: parseFloat(
+			$('#price').textContent.replace(/[^\d\.]/g, '')
+		),
+		stripeArgs: {
+			images,
+			name: $('#product-name').textContent,
+			description: $('#description').textContent,
+		},
+	}])
+
+	if (response.status != 200) {
+		alert('Error! The product was not updated.')
+		return
+	}
+
+	location.reload()
+}
+
 if (cart.getItems()[stripeProductId]) {
 	$('#added-to-cart').classList.add('show')
 }
@@ -74,3 +136,18 @@ if (quantity == 0) {
 	$('#add-to-cart').classList.add('out-of-stock')
 	$('#add-to-cart').textContent = 'Out of stock'
 }
+
+if (!isAdmin || !queryParams.get('edit')) exit()
+
+const editable = [
+	'#product-name',
+	'#price',
+	'#remaining-quantity',
+	'#description',
+]
+
+editable.forEach(selector =>
+	$(selector).setAttribute('contenteditable', true)
+)
+
+$('main').classList.add('edit')
