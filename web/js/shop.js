@@ -114,6 +114,6 @@ $('#new-product-form').onsubmit = async e => {
 
 products.forEach(product => renderProduct(product))
 
-if (!isAdmin) exit()
-
-$('body').classList.add('admin-view')
+if (isAdmin) {
+	$('body').classList.add('admin-view')
+}

@@ -137,17 +137,17 @@ if (quantity == 0) {
 	$('#add-to-cart').textContent = 'Out of stock'
 }
 
-if (!isAdmin || !queryParams.get('edit')) exit()
+if (isAdmin && queryParams.get('edit')) {
+	const editable = [
+		'#product-name',
+		'#price',
+		'#remaining-quantity',
+		'#description',
+	]
 
-const editable = [
-	'#product-name',
-	'#price',
-	'#remaining-quantity',
-	'#description',
-]
+	editable.forEach(selector =>
+		$(selector).setAttribute('contenteditable', true)
+	)
 
-editable.forEach(selector =>
-	$(selector).setAttribute('contenteditable', true)
-)
-
-$('main').classList.add('edit')
+	$('main').classList.add('edit')
+}
