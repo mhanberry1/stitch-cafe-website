@@ -1,6 +1,6 @@
 const endpoint = location.host == "localhost"
 	? "http://localhost:8080"
-	: "<TODO>"
+	: "https://api.strip.cafe:8080"
 
 export const signup = (email, username, password) => fetch(
 	`${endpoint}/user/signup`,
