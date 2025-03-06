@@ -103,7 +103,7 @@ $('#new-product-form').onsubmit = async e => {
 				),
 			},
 			metadata: {
-				type: 'product',
+				type: 'class',
 			}
 		},
 	}])
@@ -116,7 +116,7 @@ $('#new-product-form').onsubmit = async e => {
 }
 
 products
-	.filter(product => product.metadata.type != 'class') // TODO: check for product type
+	.filter(product => product.metadata.type == 'class')
 	.forEach(product => renderProduct(product))
 
 if (isAdmin) {
