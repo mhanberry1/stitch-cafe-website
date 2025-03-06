@@ -49,3 +49,7 @@ label {
 #mc_embed_shell {
 	margin-top: 40px;
 }
+
+#mc_embed_signup form {
+	margin: 0 !important;
+}

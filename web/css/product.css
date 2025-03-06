@@ -108,6 +108,7 @@ main {
 	align-items: center;
 	gap: 20px;
 	width: 480px;
+	max-width: 100%;
 }
 
 .info .row {

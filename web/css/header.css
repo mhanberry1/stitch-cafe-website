@@ -66,13 +66,36 @@ header nav a img {
 	height: 25px;
 }
 
+header #cart-indicator {
+	display: none;
+	position: absolute;
+	right: 12px;
+	top: 50px;
+	color: white;
+	padding: 5px;
+	line-height: 10px;
+	background: var(--pink);
+	border-radius: 10px;
+	font-size: 16px;
+}
+
+header #cart-indicator.show {
+	display: unset;
+}
+
+header .checkout img {
+	margin-top: -5px;
+}
+
 @media (max-width: 780px) {
 	header {
 		align-items: start;
+		transition: 0.2s;
+		height: 100px;
 	}
 
 	header.grow {
-		height: fit-content;
+		height: 500px;
 		max-height: calc(100vh - 3px);
 	}
 
@@ -83,11 +106,35 @@ header nav a img {
 	header nav {
 		flex-direction: column;
 		width: 100%;
-		display: none;
 		transition: 0.2s;
+		overflow: hidden;
+		height: 0;
+		padding: 0;
 	}
 
 	header.grow nav {
 		display: flex;
+		height: 333px;
+		padding: 20px;
+	}
+
+	header #cart-indicator {
+		top: 10px;
+		right: 4px;
+	}
+
+	header .checkout {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 30px;
+		aspect-ratio: 1;
+		position: fixed;
+		top: 120px;
+		right: 21px;
+		background: white;
+		box-shadow: 0 0 5px var(--gray);
+		padding: 10px;
+		border-radius: 50px;
 	}
 }
