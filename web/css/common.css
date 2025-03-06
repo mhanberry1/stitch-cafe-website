@@ -79,12 +79,13 @@ input {
 	border: none;
 	width: fit-content;
 	align-self: center;
+	transition: 0.2s transform ease;
 }
 
 .button:hover {
-	outline: 2px solid var(--pink);
 	font-size: 22px;
 	cursor: pointer;
+	transform: scale(1.1);
 }
 
 .button.small {

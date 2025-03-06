@@ -13,6 +13,8 @@ label {
 
 .indicates-required {
 	font-size: 14px !important;
+	margin: 0 !important;
+	width:
 }
 
 .clear.foot p {
@@ -30,11 +32,11 @@ label {
 	line-height: 30px !important;
 	height: auto !important;
 	font-family: 'Noto Serif', serif !important;
+	transition: 0.2s transform ease !important;
 }
 
 .button:hover {
-	outline: 2px solid var(--pink);
-	font-size: 22px;
+	transform: scale(1.1);
 }
 
 .foot {
@@ -43,6 +45,7 @@ label {
 }
 
 #mc_embed_shell, #mc_embed_signup {
+	width: fit-content !important;
 	max-width: 100%;
 }
 
@@ -52,4 +55,8 @@ label {
 
 #mc_embed_signup form {
 	margin: 0 !important;
+}
+
+#mc_embed_signup .mc-field-group {
+	width: 100% !important;
 }
