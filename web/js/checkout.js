@@ -40,6 +40,8 @@ const removeItem = (container, stripeProductId) => {
 	if (Object.keys(cart.getItems()).length > 0) return
 
 	$('#cart-items').textContent = 'There are no items in your cart!'
+	$('#checkout').classList.add('disabled')
+	$('#checkout').textContent = 'Cart is Empty'
 }
 
 const renderItem = (
@@ -127,8 +129,6 @@ const calculateSubtotal = () => {
 	.reduce((x, y) => x + y, 0)
 
 	$('#subtotal').textContent = '$' + subtotal.toFixed(2)
-	$('#checkout').classList.add('disabled')
-	$('#checkout').textContent = 'Cart is Empty'
 }
 
 $('#checkout').onclick = async () => {
