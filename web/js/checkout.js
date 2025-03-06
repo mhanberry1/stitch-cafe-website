@@ -59,7 +59,7 @@ const renderItem = (
 				[
 					e('img', {
 						class: 'item-image',
-						href: image,
+						src: image,
 						onerror: e => e.target.src = '/img/placeholder.png',
 					}),
 				]
