@@ -3,7 +3,7 @@ main {
 	flex-wrap: wrap;
 	flex-basis: start;
 	gap: 20px;
-	padding: 80px 20px;
+	padding: 153px 20px 80px 20px;
 }
 
 [contenteditable="true"] {
