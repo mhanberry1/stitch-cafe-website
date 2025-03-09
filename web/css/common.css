@@ -18,7 +18,8 @@ main {
 	justify-content: center;
 	color: var(--gray);
 	padding: 20px;
-	min-height: calc(100vh - 243px);
+	padding-top: 153px;
+	min-height: calc(100vh - 273px);
 }
 
 main a {

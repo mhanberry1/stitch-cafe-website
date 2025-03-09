@@ -2,10 +2,22 @@ header {
 	display: flex;
 	width: 100%;
 	height: 100px;
-	border-bottom: 3px solid var(--gray);
 	justify-content: space-between;
 	align-items: center;
 	flex-wrap: wrap;
+	background: var(--white);
+	position: fixed;
+	filter: drop-shadow(0 0 10px var(--gray));
+	z-index: 2;
+}
+
+header::after {
+	content: "";
+	display: block;
+	height: 20px;
+	width: 100%;
+	background: url(/img/half-circle.svg) 0 0 / 20px repeat-x;
+	margin-top: -36px;
 }
 
 header .logo {
@@ -19,6 +31,7 @@ header .logo {
 	border-radius: 0 0 5px 0;
 	background: var(--pink);
 	transition: 0.2s transform ease;
+	z-index: 3;
 }
 
 header .logo:hover {
@@ -60,10 +73,11 @@ header nav {
 	font-size: 30px;
 	display: flex;
 	grid-gap: 20px;
-	padding: 20px;
+	padding: 20px 40px 20px 20px;
 	align-items: center;
 	max-height: calc(100vh - 171px);
 	overflow: scroll;
+	margin-top: -20px;
 }
 
 header nav a {
@@ -84,7 +98,7 @@ header nav a img {
 header #cart-indicator {
 	display: none;
 	position: absolute;
-	right: 12px;
+	right: 32px;
 	top: 50px;
 	color: white;
 	padding: 5px;
@@ -109,6 +123,10 @@ header .checkout img {
 		height: 100px;
 	}
 
+	header::after {
+		margin-top: -28px;
+	}
+
 	header.grow {
 		height: 500px;
 		max-height: calc(100vh - 3px);
@@ -125,12 +143,17 @@ header .checkout img {
 		overflow: hidden;
 		height: 0;
 		padding: 0;
+		margin-top: 0;
 	}
 
 	header.grow nav {
 		display: flex;
 		height: 333px;
 		padding: 20px;
+	}
+
+	header.grow::after {
+		margin-top: -1px;
 	}
 
 	header #cart-indicator {
@@ -145,7 +168,7 @@ header .checkout img {
 		height: 30px;
 		aspect-ratio: 1;
 		position: fixed;
-		top: 120px;
+		top: 140px;
 		right: 21px;
 		background: white;
 		box-shadow: 0 0 5px var(--gray);
