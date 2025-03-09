@@ -62,6 +62,7 @@ header #toggle-nav {
 	display: none;
 	height: 50px;
 	padding: 24px;
+	padding-left: 0;
 }
 
 header #toggle-nav:hover {
@@ -116,7 +117,7 @@ header .checkout img {
 	margin-top: -5px;
 }
 
-@media (max-width: 780px) {
+@media (max-width: 850px) {
 	header {
 		align-items: start;
 		transition: 0.2s;
@@ -177,5 +178,11 @@ header .checkout img {
 		background: white;
 		padding: 10px;
 		border-radius: 50px;
+	}
+}
+
+@media (max-width: 330px) {
+	header #toggle-nav {
+		height: 25px;
 	}
 }
