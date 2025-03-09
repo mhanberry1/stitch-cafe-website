@@ -115,7 +115,7 @@ $('#update-product').onclick = async () => {
 		stripeArgs: {
 			images,
 			name: $('#product-name').textContent,
-			description: $('#description').textContent,
+			description: $('#description').innerHTML,
 		},
 	}])
 
@@ -136,7 +136,7 @@ $('#current-image').src = images[imgIdx]
 $('#product-name').textContent = name
 $('#price').textContent = '$' + parseFloat(unit_amount / 100).toFixed(2)
 $('#remaining-quantity').textContent = `(${quantity} left)`
-$('#description').textContent = description
+$('#description').innerHTML = description
 $('#purchase-quantity').value = cart.getItems()[stripeProductId] || 1
 
 if (quantity == 0) {
