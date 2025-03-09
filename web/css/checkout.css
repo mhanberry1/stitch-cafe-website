@@ -56,6 +56,14 @@ main {
 	border-radius: 10px;
 }
 
+.pickup-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	font-size: 20px;
+}
+
 @media (max-width: 400px) {
 	.item input {
 		width: 120px;

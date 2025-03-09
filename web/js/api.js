@@ -83,7 +83,11 @@ export const deleteProducts = stripeProductIds => fetch(
 	}
 )
 
-export const checkout = stripeLineItems => fetch(
+export const checkout = (
+	stripeLineItems,
+	pickup,
+	includesPhysicalItems,
+) => fetch(
 	`${endpoint}/checkout`,
 	{
 		method: 'POST',
@@ -92,6 +96,22 @@ export const checkout = stripeLineItems => fetch(
 				success_url: `${location.origin}/success.html`,
 				line_items: stripeLineItems,
 				mode: 'payment',
+				shipping_address_collection: !pickup && includesPhysicalItems
+					? {
+						allowed_countries: ['US'],
+					} : undefined,
+				custom_text: {
+					submit: {
+						message: pickup
+							? 'You will receive an email when your order is ready to be picked up at Stitch Cafe!'
+							: undefined,
+					},
+				},
+				metadata: {
+					pickup: pickup
+						? 'Order will pickup at the shop'
+						: undefined,
+				},
 			},
 		}),
 	}

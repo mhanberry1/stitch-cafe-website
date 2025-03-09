@@ -4,6 +4,9 @@ import cart from './cart.js'
 
 const items = cart.getItems()
 const { products } = await (await listProducts(Object.keys(items))).json()
+const includesPhysicalItems = products
+	.filter(product => items[product.id])
+	.some(product => product.metadata.type != 'class')
 
 const minus = (container, stripeProductId) => {
 	const currentVal =
@@ -139,7 +142,13 @@ $('#checkout').onclick = async () => {
 			quantity: cartItems[product.id],
 		}))
 		.filter(l => l)
-	const response = await checkout(stripeLineItems)
+	const pickup  = $('#pickup').checked
+
+	const response = await checkout(
+		stripeLineItems,
+		pickup,
+		includesPhysicalItems,
+	)
 	const { checkoutUrl } = await response.json()
 
 	if (response.status != 200) {
@@ -150,6 +159,7 @@ $('#checkout').onclick = async () => {
 	location.href = checkoutUrl
 }
 
+// Render the cart items
 products.forEach(({
 	stripeProductId,
 	name,
@@ -172,8 +182,15 @@ products.forEach(({
 	)
 })
 
+// If there are no physical items in the cart, hide the pickup option
+if (!includesPhysicalItems) {
+	$('#pickup').closest('.pickup-container').style.display = 'none';
+	$('#pickup').checked = false;
+}
+
 calculateSubtotal()
 
+// If there are no items in the cart, render the empty cart message
 if (Object.keys(items).length == 0) {
 	$('#cart-items').textContent = 'There are no items in your cart!'
 	$('#checkout').classList.add('disabled')

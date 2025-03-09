@@ -56,6 +56,16 @@ input {
 	padding: 8px;
 }
 
+input[type="checkbox"] {
+	transform: scale(1.5);
+	transition: 0.1s;
+}
+
+input[type="checkbox"]:hover {
+	cursor: pointer;
+	transform: scale(1.7);
+}
+
 .row {
 	display: flex;
 	flex-direction: row;
