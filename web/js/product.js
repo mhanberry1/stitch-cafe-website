@@ -33,6 +33,10 @@ $('#add-images').onclick = () => {
 
 		images.splice(imgIdx, 0, ...uploadedFiles)
 		$('#current-image').src = images[imgIdx]
+
+		if (images.length < 2) return
+
+		$('#image-controls').classList.remove('hidden')
 	}
 
 	input.click()
@@ -55,6 +59,10 @@ $('#delete-image').onclick = () => {
 	images.splice(imgIdx, 1)
 	imgIdx = Math.min(imgIdx, images.length - 1)
 	$('#current-image').src = images[imgIdx]
+
+	if (images.length > 1) return
+
+	$('#image-controls').classList.add('hidden')
 }
 
 $('#prev-image').onclick = () => {
@@ -135,6 +143,10 @@ if (quantity == 0) {
 	$('.quantity-container').remove()
 	$('#add-to-cart').classList.add('out-of-stock')
 	$('#add-to-cart').textContent = 'Out of stock'
+}
+
+if (images.length < 2) {
+	$('#image-controls').classList.add('hidden')
 }
 
 if (isAdmin && queryParams.get('edit')) {
