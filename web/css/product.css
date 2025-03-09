@@ -31,6 +31,10 @@ main {
 	gap: 20px;
 }
 
+#remaining-quantity {
+	display: none;
+}
+
 #update-product {
 	display: none;
 }
@@ -55,6 +59,10 @@ main {
 
 .edit .admin-buttons {
 	display: flex;
+}
+
+.edit #remaining-quantity {
+	display: unset;
 }
 
 .edit #add-to-cart {

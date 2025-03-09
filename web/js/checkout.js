@@ -72,7 +72,14 @@ const renderItem = (
 			e('h2', {}, [name]),
 			e('div', { class: 'row' }, [
 				e('span', { id: 'price' }, ['$' + price]),
-				e('span', { id: 'max-quantity' }, [`(${maxQuantity} left)`]),
+				e('img', {
+					id: 'delete-item',
+					src: '/img/x.svg',
+					onclick: e => removeItem(
+						e.target.closest('.item'),
+						stripeProductId,
+					)
+				}),
 			]),
 			e('div', { class: 'row' }, [
 				e('div', { class: 'quantity-container' }, [
@@ -104,14 +111,6 @@ const renderItem = (
 						),
 					}, ['+']),
 				]),
-				e('img', {
-					id: 'delete-item',
-					src: '/img/x.svg',
-					onclick: e => removeItem(
-						e.target.closest('.item'),
-						stripeProductId,
-					)
-				}),
 			]),
 		])
 	)

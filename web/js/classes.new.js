@@ -60,11 +60,8 @@ const renderProduct = ({
 			}
 		}),
 		e('h2', {}, [ name ]),
-		e('div', { class: 'row' }, [
-			e('span', { class: 'price' }, [
-				'$' + parseFloat(unit_amount / 100).toFixed(2),
-			]),
-			e('span', { class: 'quantity' }, [ `(${quantity} left)` ]),
+		e('span', { class: 'price' }, [
+			'$' + parseFloat(unit_amount / 100).toFixed(2),
 		]),
 		e('p', {}, [
 			description.length > 50
