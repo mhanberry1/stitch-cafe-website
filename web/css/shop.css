@@ -70,11 +70,34 @@ main {
 	overflow: hidden;
 }
 
+.product .sold-out {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	line-height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	background: var(--pink);
+	color: var(--white);
+	font-family: 'Single Day';
+	font-size: 26px;
+	margin-bottom: -110px;
+	position: relative;
+	z-index: 1;
+	left: -15px;
+	top: -15px;
+}
+
+.product .sold-out.hidden {
+	display: none;
+}
+
 .product .admin-buttons {
 	display: none;
 	gap: 20px;
 	justify-content: end;
 	position: relative;
+	margin-top: 0;
 	margin-bottom: -70px;
 	z-index: 1;
 	padding: 10px;

@@ -52,6 +52,9 @@ const renderProduct = ({
 				}),
 			]),
 		]),
+		e('div', {
+			class: `sold-out ${quantity > 0 ? 'hidden' : ''}`
+		}, ['Sold out']),
 		e('img', {
 			class: 'product-image',
 			src: images[0],
