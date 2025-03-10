@@ -7,7 +7,7 @@ header {
 	flex-wrap: wrap;
 	background: var(--white);
 	position: fixed;
-	filter: drop-shadow(0 0 10px #c0c0c0);
+	filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
 	z-index: 2;
 }
 
