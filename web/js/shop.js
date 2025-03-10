@@ -55,13 +55,15 @@ const renderProduct = ({
 		e('div', {
 			class: `sold-out ${quantity > 0 ? 'hidden' : ''}`
 		}, ['Sold out']),
-		e('img', {
-			class: 'product-image',
-			src: images[0],
-			onerror: e => {
-				e.target.src = '/img/placeholder.png'
-			}
-		}),
+		e('div', { class: 'image-container' }, [
+			e('img', {
+				class: 'product-image',
+				src: images[0],
+				onerror: e => {
+					e.target.src = '/img/placeholder.png'
+				}
+			}),
+		]),
 		e('h2', {}, [ name ]),
 		e('span', { class: 'price' }, [
 			'$' + parseFloat(unit_amount / 100).toFixed(2),
