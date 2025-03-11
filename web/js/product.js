@@ -9,6 +9,25 @@ import cart from './cart.js'
 const isAdmin = localStorage.getItem('isAdmin')
 const queryParams = new URLSearchParams(location.href.split('?')[1])
 const stripeProductId = JSON.parse(queryParams.get('stripeProductIds'))[0]
+const cachedInfo = JSON.parse(localStorage.getItem('products') || '[]')
+	.find(product => product.id == stripeProductId)
+
+// Render cached info at first
+if (cachedInfo) {
+	const {
+		images,
+		name,
+		default_price: { unit_amount },
+		description,
+	} = cachedInfo
+
+	$('title').textContent = `Stitch Cafe - ${name}`
+	$('#current-image').src = images[0]
+	$('#product-name').textContent = name
+	$('#price').textContent = '$' + parseFloat(unit_amount / 100).toFixed(2)
+	$('#description').innerHTML = description
+	$('#purchase-quantity').value = cart.getItems()[stripeProductId] || 1
+}
 
 const {
 	images,
@@ -150,8 +169,8 @@ if (quantity == 0) {
 	$('#add-to-cart').textContent = 'Out of stock'
 }
 
-if (images.length < 2) {
-	$('#image-controls').classList.add('hidden')
+if (images.length >= 2) {
+	$('#image-controls').classList.remove('hidden')
 }
 
 if (isAdmin && queryParams.get('edit')) {

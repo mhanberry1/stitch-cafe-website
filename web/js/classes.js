@@ -117,6 +117,9 @@ $('#new-product-form').onsubmit = async e => {
 	location.reload()
 }
 
+// Cache the products
+localStorage.setItem('products', JSON.stringify(products))
+
 products
 	.filter(product => product.metadata.type == 'class')
 	.forEach(product => renderProduct(product))
