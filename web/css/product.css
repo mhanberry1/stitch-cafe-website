@@ -14,8 +14,6 @@ main {
 .image-container {
 	width: 600px;
 	max-width: 100%;
-	border-radius: 10px;
-	overflow: hidden;
 }
 
 #current-image {
@@ -23,6 +21,7 @@ main {
 	height: 100%;
 	aspect-ratio: 1.5;
 	object-fit: contain;
+	border-radius: 10px;
 }
 
 #images {
