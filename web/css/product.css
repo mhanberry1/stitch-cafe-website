@@ -51,6 +51,10 @@ main {
 	display: none;
 }
 
+#edit-category {
+	display: none;
+}
+
 #update-product {
 	display: none;
 }

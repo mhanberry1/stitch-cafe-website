@@ -47,13 +47,18 @@ main {
 	max-width: 100%;
 }
 
-.item .item-image {
+.item .image-container {
 	width: 365px;
 	max-width: 100%;
 	aspect-ratio: 1.5;
-	background: var(--light-gray);
 	border: 1px solid var(--light-gray);
 	border-radius: 10px;
+}
+
+.item .item-image {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
 }
 
 .pickup-container {

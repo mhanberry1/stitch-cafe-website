@@ -16,6 +16,7 @@ const {
 	default_price: { unit_amount },
 	quantity,
 	description,
+	metadata: { category },
 } = (await (await listProducts([stripeProductId])).json()).products[0]
 
 let imgIdx = 0
@@ -116,6 +117,9 @@ $('#update-product').onclick = async () => {
 			images,
 			name: $('#product-name').textContent,
 			description: $('#description').innerHTML,
+			metadata: {
+				category: $('#edit-category').value,
+			},
 		},
 	}])
 
@@ -137,6 +141,7 @@ $('#product-name').textContent = name
 $('#price').textContent = '$' + parseFloat(unit_amount / 100).toFixed(2)
 $('#remaining-quantity').textContent = `(${quantity} left)`
 $('#description').innerHTML = description
+$('#edit-category').value = category || ''
 $('#purchase-quantity').value = cart.getItems()[stripeProductId] || 1
 
 if (quantity == 0) {
@@ -162,4 +167,5 @@ if (isAdmin && queryParams.get('edit')) {
 	)
 
 	$('main').classList.add('edit')
+	$('#edit-category').style.display = 'unset'
 }

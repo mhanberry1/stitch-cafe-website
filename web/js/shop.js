@@ -9,6 +9,7 @@ import {
 
 const isAdmin = localStorage.getItem('isAdmin')
 const { products } = await (await listProducts()).json()
+const productGroups = {}
 
 const editProduct = (e, stripeProductId) => {
 	e.stopPropagation()
@@ -69,9 +70,9 @@ const renderProduct = ({
 			'$' + parseFloat(unit_amount / 100).toFixed(2),
 		]),
 		e('p', {}, [
-			description.length > 50
-				? description.slice(0, 50) + '...'
-				: description
+			description.replace(/\s*<br>\s*/g, ' ').length > 50
+				? description.replace(/\s*<br>\s*/g, ' ').slice(0, 50) + '...'
+				: description.replace(/\s*<br>\s*/g, ' ')
 		]),
 	]),
 )
@@ -117,9 +118,27 @@ $('#new-product-form').onsubmit = async e => {
 	location.reload()
 }
 
+// Construct product groups
 products
-	.filter(product => product.metadata.type != 'class') // TODO: check for product type
-	.forEach(product => renderProduct(product))
+	.filter(product => product.metadata.type == 'product')
+	.forEach(product => {
+		const { category } = product.metadata
+
+		if (!productGroups[category]) {
+			productGroups[category] = []
+		}
+
+		productGroups[category].push(product)
+	})
+
+// Render category sections
+Object.keys(productGroups).forEach(category => {
+	$('#product-list').append(e('h1', {}, [ category ]))
+
+	productGroups[category].forEach(product => {
+		renderProduct(product)
+	})
+})
 
 if (isAdmin) {
 	$('body').classList.add('admin-view')

@@ -62,11 +62,13 @@ const renderItem = (
 					href: `/product.html?stripeProductIds=["${stripeProductId}"]`
 				},
 				[
-					e('img', {
-						class: 'item-image',
-						src: image,
-						onerror: e => e.target.src = '/img/placeholder.png',
-					}),
+					e('div', { class: 'image-container' }, [
+						e('img', {
+							class: 'item-image',
+							src: image,
+							onerror: e => e.target.src = '/img/placeholder.png',
+						}),
+					]),
 				]
 			),
 			e('h2', {}, [name]),
