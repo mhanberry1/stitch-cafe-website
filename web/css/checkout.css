@@ -51,7 +51,6 @@ main {
 	width: 365px;
 	max-width: 100%;
 	aspect-ratio: 1.5;
-	border: 1px solid var(--light-gray);
 	border-radius: 10px;
 }
 
