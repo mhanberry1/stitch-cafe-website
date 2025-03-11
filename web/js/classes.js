@@ -9,6 +9,7 @@ import {
 
 const isAdmin = localStorage.getItem('isAdmin')
 const { products } = await (await listProducts()).json()
+const productGroups = {}
 
 const editProduct = (e, stripeProductId) => {
 	e.stopPropagation()
@@ -120,9 +121,27 @@ $('#new-product-form').onsubmit = async e => {
 // Cache the products
 localStorage.setItem('products', JSON.stringify(products))
 
+// Construct product groups
 products
 	.filter(product => product.metadata.type == 'class')
-	.forEach(product => renderProduct(product))
+	.forEach(product => {
+		const category = product.metadata.category || 'Classes'
+
+		if (!productGroups[category]) {
+			productGroups[category] = []
+		}
+
+		productGroups[category].push(product)
+	})
+
+// Render category sections
+Object.keys(productGroups).forEach(category => {
+	$('#product-list').append(e('h1', {}, [ category ]))
+
+	productGroups[category].forEach(product => {
+		renderProduct(product)
+	})
+})
 
 if (isAdmin) {
 	$('body').classList.add('admin-view')
