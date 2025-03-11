@@ -125,7 +125,7 @@ localStorage.setItem('products', JSON.stringify(products))
 products
 	.filter(product => product.metadata.type == 'product')
 	.forEach(product => {
-		const { category } = product.metadata
+		const category = product.metadata.category || 'products'
 
 		if (!productGroups[category]) {
 			productGroups[category] = []
