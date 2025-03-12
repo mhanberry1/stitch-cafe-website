@@ -195,7 +195,7 @@ header .checkout img {
 
 	.banner {
 		padding-top: 35px;
-		width: 100%;
+		width: calc(100% - 40px);
 		border-radius: 0 0 10px 10px;
 		text-align: center;
 	}
