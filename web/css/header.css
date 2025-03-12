@@ -117,6 +117,16 @@ header .checkout img {
 	margin-top: -5px;
 }
 
+.banner {
+	position: fixed;
+	width: 100%;
+	padding: 15px 0 10px 0;
+	background: var(--pink);
+	color: var(--white);
+	top: 100px;
+	text-align: center;
+}
+
 @media (max-width: 850px) {
 	header {
 		align-items: start;
@@ -178,6 +188,10 @@ header .checkout img {
 		background: white;
 		padding: 10px;
 		border-radius: 50px;
+	}
+
+	.banner {
+		padding-top: 35px;
 	}
 }
 
