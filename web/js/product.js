@@ -23,7 +23,7 @@ if (cachedInfo) {
 
 	$('title').textContent = `Stitch Cafe - ${name}`
 	$('#current-image').src = images[0]
-	$('#product-name').textContent = name
+	$('#product-name').innerHTML = name
 	$('#price').textContent = '$' + parseFloat(unit_amount / 100).toFixed(2)
 	$('#description').innerHTML = description
 	$('#purchase-quantity').value = cart.getItems()[stripeProductId] || 1
@@ -134,7 +134,7 @@ $('#update-product').onclick = async () => {
 		),
 		stripeArgs: {
 			images,
-			name: $('#product-name').textContent,
+			name: $('#product-name').innerHTML,
 			description: $('#description').innerHTML,
 			metadata: {
 				category: $('#edit-category').value,
@@ -156,7 +156,7 @@ if (cart.getItems()[stripeProductId]) {
 
 $('title').textContent = `Stitch Cafe - ${name}`
 $('#current-image').src = images[imgIdx]
-$('#product-name').textContent = name
+$('#product-name').innerHTML = name
 $('#price').textContent = '$' + parseFloat(unit_amount / 100).toFixed(2)
 $('#remaining-quantity').textContent = `(${quantity} left)`
 $('#description').innerHTML = description

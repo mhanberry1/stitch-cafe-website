@@ -111,12 +111,11 @@ main {
 	background: var(--pink);
 	padding: 10px;
 	border-radius: 50%;
-	outline: 0px solid var(--pink);
-	transition: 0.1s outline ease;
+	transition: 0.1s transform ease;
 }
 
 .admin-button:hover {
-	outline: 3px solid var(--pink);
+	transform: scale(1.2);
 	cursor: pointer;
 }
 

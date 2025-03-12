@@ -70,9 +70,9 @@ const renderProduct = ({
 			'$' + parseFloat(unit_amount / 100).toFixed(2),
 		]),
 		e('p', {}, [
-			description.length > 50
-				? description.slice(0, 50) + '...'
-				: description
+			description.replace(/\s*<br>\s*/g, ' ').length > 50
+				? description.replace(/\s*<br>\s*/g, ' ').slice(0, 50) + '...'
+				: description.replace(/\s*<br>\s*/g, ' ')
 		]),
 	]),
 )

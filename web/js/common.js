@@ -15,9 +15,13 @@ export const e = (elementType, attributes = {}, children = []) => {
 			: element.setAttribute(key, val)
 	)
 
-	children.forEach(
-		child => element.append(child)
-	)
+	children.forEach(child => {
+		if (typeof(child) == 'string') {
+			element.innerHTML += child
+		} else {
+			element.append(child)
+		}
+	})
 
 	return element
 }
