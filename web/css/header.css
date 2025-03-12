@@ -141,7 +141,7 @@ header .checkout img {
 		flex-direction: column;
 		width: 100%;
 		transition: 0.2s;
-		overflow: hidden;
+		overflow: scroll;
 		height: 0;
 		padding: 0;
 		margin-top: 0;
