@@ -20,6 +20,7 @@ main {
 	padding: 20px;
 	padding-top: 153px;
 	min-height: calc(100vh - 273px);
+	font-family: 'Noto Serif', serif;
 }
 
 main a {
