@@ -105,16 +105,10 @@ main {
 	margin-bottom: -70px;
 	z-index: 1;
 	padding: 10px;
-	opacity: 0;
-	transition: 0.2s opacity ease;
 }
 
 .product .admin-buttons.show {
 	display: flex;
-}
-
-.product:hover .admin-buttons {
-	opacity: 1;
 }
 
 .product .admin-button {
@@ -123,11 +117,11 @@ main {
 	border-radius: 50px;
 	background: var(--pink);
 	outline: 0px solid var(--pink);
-	transition: 0.1s outline ease;
+	transition: 0.1s transform ease;
 }
 
 .product .admin-button:hover {
-	outline: 3px solid var(--pink);
+	transform: scale(1.2);
 }
 
 
