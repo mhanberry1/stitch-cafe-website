@@ -119,12 +119,15 @@ header .checkout img {
 
 .banner {
 	position: fixed;
-	width: 100%;
-	padding: 15px 0 10px 0;
+	width: fit-content;
+	padding: 15px 20px 10px 20px;
 	background: var(--pink);
 	color: var(--white);
 	top: 100px;
-	text-align: center;
+	right: 0;
+	border-radius: 0 0 0 10px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	z-index: 1;
 }
 
 @media (max-width: 850px) {
@@ -183,7 +186,7 @@ header .checkout img {
 		height: 30px;
 		aspect-ratio: 1;
 		position: fixed;
-		top: 140px;
+		top: 160px;
 		right: 21px;
 		background: white;
 		padding: 10px;
@@ -192,6 +195,9 @@ header .checkout img {
 
 	.banner {
 		padding-top: 35px;
+		width: 100%;
+		border-radius: 0 0 10px 10px;
+		text-align: center;
 	}
 }
 
