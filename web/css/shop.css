@@ -45,6 +45,10 @@ main {
 	padding-top: 80px;
 }
 
+.admin-view .quantity {
+	display: unset !important;
+}
+
 .product {
 	display: flex;
 	flex-direction: column;
@@ -72,6 +76,10 @@ main {
 .product p {
 	max-height: 60px;
 	overflow: hidden;
+}
+
+.product :not(h2) {
+	font-weight: normal;
 }
 
 .product .sold-out {
@@ -142,12 +150,11 @@ main {
 	object-fit: contain;
 }
 
+.product .quantity {
+	display: none;
+}
 
 .product .row {
 	justify-content: center;
 	gap: 10px;
-}
-
-.product .price {
-	text-align: center;
 }
