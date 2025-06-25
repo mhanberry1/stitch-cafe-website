@@ -107,6 +107,11 @@ export const checkout = (
 							: undefined,
 					},
 				},
+				customer_creation: 'always',
+				billing_address_collection: 'required',
+				phone_number_collection: {
+					enabled: true,
+				},
 				metadata: {
 					pickup: pickup
 						? 'Order will pickup at the shop'
